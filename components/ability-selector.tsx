@@ -82,7 +82,7 @@ export function AbilitySelector({
       <div className="flex items-center gap-2 mb-3">
         <Zap className="h-4 w-4 text-yellow-500" />
         <span className="text-sm font-medium text-gray-700">Select Ability</span>
-        </div>
+      </div>
 
       {/* Ability Buttons */}
       <div className="flex flex-wrap gap-2 mb-4">

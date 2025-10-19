@@ -55,7 +55,11 @@ export function PokemonDetailTabs({ isLoading, abilities, stats }: PokemonDetail
         </TabsContent>
 
         <TabsContent value="stats" className="mt-6">
-          <PokemonStatsChart />
+          <PokemonStatsChart
+            isLoading={isLoading}
+            abilities={abilities}
+            stats={stats}
+          />
         </TabsContent>
       </Tabs>
     </div>
