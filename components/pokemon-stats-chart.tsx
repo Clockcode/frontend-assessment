@@ -4,6 +4,7 @@ import { AbilitySelector } from '@/components/ability-selector';
 import { StatsChart } from '@/components/stats-chart';
 import { StatsSummaryCards } from '@/components/stats-summary-cards';
 import { useAbilityStats } from '@/hooks/use-ability-stats';
+import { useChartData } from '@/hooks/use-chart-data';
 import { BarChart3 } from 'lucide-react';
 
 interface PokemonStatsChartProps {
@@ -27,6 +28,12 @@ export function PokemonStatsChart({ isLoading, abilities, stats }: PokemonStatsC
     abilities: availableAbilities
   } = useAbilityStats(abilities, stats);
 
+  const {
+    chartData,
+    chartStats,
+    selectedAbility: chartSelectedAbility
+  } = useChartData({ modifiedStats, selectedAbility });
+
 
   return (
     <div className="bg-white border border-gray-200 rounded-lg shadow-lg p-6">
@@ -44,12 +51,15 @@ export function PokemonStatsChart({ isLoading, abilities, stats }: PokemonStatsC
 
       <StatsChart
         isLoading={isLoading}
-        data={modifiedStats}
-        selectedAbility={selectedAbility}
+        data={chartData}
+        selectedAbility={chartSelectedAbility}
       />
 
       <StatsSummaryCards
         isLoading={isLoading}
+        baseTotal={chartStats.baseTotal}
+        modifiedTotal={chartStats.modifiedTotal}
+        netChange={chartStats.netChange}
       />
 
       <div className="text-sm text-gray-600">

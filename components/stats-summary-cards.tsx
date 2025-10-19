@@ -6,12 +6,14 @@ interface StatsSummaryCardsProps {
   isLoading?: boolean;
   baseTotal?: number;
   modifiedTotal?: number;
+  netChange?: number;
 }
 
 export function StatsSummaryCards({
   isLoading,
   baseTotal,
-  modifiedTotal
+  modifiedTotal,
+  netChange
 }: StatsSummaryCardsProps) {
   if (isLoading) {
     return (
@@ -32,7 +34,7 @@ export function StatsSummaryCards({
     );
   }
 
-  const netChange = (modifiedTotal || 0) - (baseTotal || 0);
+  const calculatedNetChange = netChange ?? ((modifiedTotal || 0) - (baseTotal || 0));
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
@@ -48,8 +50,8 @@ export function StatsSummaryCards({
 
       <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
         <div className="text-sm font-medium text-gray-700 mb-1">Net Change</div>
-        <div className={`text-2xl font-bold ${netChange > 0 ? 'text-green-600' : netChange < 0 ? 'text-red-600' : 'text-gray-800'}`}>
-          {netChange > 0 ? '+' : ''}{netChange}
+        <div className={`text-2xl font-bold ${calculatedNetChange > 0 ? 'text-green-600' : calculatedNetChange < 0 ? 'text-red-600' : 'text-gray-800'}`}>
+          {calculatedNetChange > 0 ? '+' : ''}{calculatedNetChange}
         </div>
       </div>
     </div>
