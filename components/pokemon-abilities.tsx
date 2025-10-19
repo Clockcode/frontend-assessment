@@ -1,5 +1,6 @@
 'use client';
 
+import { AbilityBadge } from '@/components/ability-badge';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useAbilityDetails } from '@/hooks/use-ability-details';
@@ -82,12 +83,11 @@ function AbilityCard({ ability }: AbilityCardProps) {
       {/* Ability badges */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Badge
-            variant={ability.is_hidden ? "destructive" : "default"}
-            className="text-sm px-3 py-1"
-          >
-            {abilityName}
-          </Badge>
+          <AbilityBadge
+            abilityName={ability.ability.name}
+            isHidden={ability.is_hidden}
+            variant="default"
+          />
           {ability.is_hidden && (
             <Badge variant="outline" className="text-sm px-3 py-1">
               Hidden

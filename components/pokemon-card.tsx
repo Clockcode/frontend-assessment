@@ -1,5 +1,6 @@
 'use client';
 
+import { AbilityBadge } from '@/components/ability-badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 import { formatPokemonName, getPokemonImageUrl } from '@/lib/pokemon-utils';
@@ -76,6 +77,29 @@ export function PokemonCard({ pokemon, onClick }: PokemonCardProps) {
               types={pokemon.types}
               size="sm"
             />
+          )}
+
+          {/* Ability Badges */}
+          {pokemon.abilities && pokemon.abilities.length > 0 && (
+            <div className="mt-4">
+              <div className="text-sm font-medium text-gray-600 mb-2">Abilities</div>
+              <div className="flex flex-wrap gap-1 justify-center">
+                {pokemon.abilities.slice(0, 2).map((ability, index) => (
+                  <AbilityBadge
+                    key={index}
+                    abilityName={ability.ability.name}
+                    isHidden={ability.is_hidden}
+                    variant="compact"
+                  />
+                ))}
+                {pokemon.abilities.length > 2 && (
+                  <AbilityBadge
+                    abilityName={`+${pokemon.abilities.length - 2} more`}
+                    variant="more"
+                  />
+                )}
+              </div>
+            </div>
           )}
         </div>
       </CardContent>
