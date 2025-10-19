@@ -45,7 +45,7 @@ export function PokemonStatsChart({ isLoading, abilities, stats }: PokemonStatsC
       <AbilitySelector
         isLoading={isLoading}
         abilities={availableAbilities}
-        selectedAbility={selectedAbility}
+        selectedAbility={chartSelectedAbility}
         onSelectAbility={setSelectedAbility}
       />
 
