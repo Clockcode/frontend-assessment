@@ -15,7 +15,7 @@ export default function PokemonNotFound() {
             Pokémon Not Found
           </CardTitle>
           <CardDescription className="text-gray-600">
-            The Pokémon with this ID doesn't exist.
+            The Pokémon with this ID doesn&apos;t exist.
           </CardDescription>
         </CardHeader>
         <CardContent>
