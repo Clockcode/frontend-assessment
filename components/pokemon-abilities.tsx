@@ -4,7 +4,6 @@ import { AbilityBadge } from '@/components/ability-badge';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useAbilityDetails } from '@/hooks/use-ability-details';
-import { formatPokemonName } from '@/lib/pokemon-utils';
 import { AlertCircle, Info } from 'lucide-react';
 
 interface PokemonAbilitiesProps {
@@ -76,7 +75,6 @@ interface AbilityCardProps {
 
 function AbilityCard({ ability }: AbilityCardProps) {
   const { ability: abilityData, isLoading, error } = useAbilityDetails(ability.ability.name);
-  const abilityName = formatPokemonName(ability.ability.name);
 
   return (
     <div className="space-y-3">
