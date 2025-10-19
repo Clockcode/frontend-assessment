@@ -7,14 +7,31 @@ import { formatPokemonName, getTypeColor } from '@/lib/pokemon-utils';
 interface PokemonTypesProps {
   isLoading: boolean;
   types?: Array<{ type: { name: string } }>;
+  size?: 'sm' | 'lg';
+  className?: string;
 }
 
-export function PokemonTypes({ isLoading, types }: PokemonTypesProps) {
+export function PokemonTypes({
+  isLoading,
+  types,
+  size = 'lg',
+  className = ''
+}: PokemonTypesProps) {
+  const sizeClasses = {
+    sm: 'text-xs font-medium text-white',
+    lg: 'text-base px-4 py-2 text-white font-medium'
+  };
+
+  const skeletonClasses = {
+    sm: 'h-6 w-16 rounded-full',
+    lg: 'h-8 w-20 rounded-full'
+  };
+
   if (isLoading) {
     return (
-      <div className="flex justify-center gap-3 mb-8">
-        <Skeleton className="h-8 w-20 rounded-full" />
-        <Skeleton className="h-8 w-20 rounded-full" />
+      <div className="flex justify-center gap-3 flex-wrap">
+        <Skeleton className={skeletonClasses[size]} />
+        <Skeleton className={skeletonClasses[size]} />
       </div>
     );
   }
@@ -24,11 +41,11 @@ export function PokemonTypes({ isLoading, types }: PokemonTypesProps) {
   }
 
   return (
-    <div className="flex justify-center gap-3 mb-8">
+    <div className={`flex justify-center gap-3 flex-wrap ${className}`}>
       {types.map((type, index) => (
         <Badge
           key={index}
-          className="text-base font-medium text-white px-4 py-3 rounded-full"
+          className={`${sizeClasses[size]} transition-transform duration-200 hover:scale-105`}
           style={{
             backgroundColor: getTypeColor(type.type.name),
           }}

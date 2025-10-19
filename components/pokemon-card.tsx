@@ -6,6 +6,7 @@ import { formatPokemonName, getPokemonImageUrl } from '@/lib/pokemon-utils';
 import { Pokemon } from '@/types/pokemon';
 import Image from 'next/image';
 import { useState } from 'react';
+import { PokemonTypes } from './pokemon-types';
 
 interface PokemonCardProps {
   pokemon: Pokemon;
@@ -67,6 +68,15 @@ export function PokemonCard({ pokemon, onClick }: PokemonCardProps) {
           <h3 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors duration-200">
             {formatPokemonName(pokemon.name)}
           </h3>
+
+          {/* Type Badges */}
+          {pokemon.types && pokemon.types.length > 0 && (
+            <PokemonTypes
+              isLoading={false}
+              types={pokemon.types}
+              size="sm"
+            />
+          )}
         </div>
       </CardContent>
     </Card>

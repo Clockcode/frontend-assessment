@@ -13,11 +13,38 @@ export async function getPokemonList(limit: number = 151): Promise<Pokemon[]> {
     }
     const data: PokemonListResponse = await response.json();
 
-    return data.results.map((pokemon, index) => ({
-      id: index + 1,
-      name: pokemon.name,
-      url: pokemon.url,
-    }));
+    const pokemonDetails = await Promise.all(
+      data.results.map(async (pokemon, index) => {
+        try {
+          const detailResponse = await fetch(`${BASE_URL}/pokemon/${index + 1}`);
+          if (!detailResponse.ok) {
+            throw new Error(`Failed to fetch Pokemon details: ${detailResponse.status}`);
+          }
+          const details = await detailResponse.json();
+
+          return {
+            id: index + 1,
+            name: pokemon.name,
+            url: pokemon.url,
+            types: details.types || [],
+            sprites: details.sprites,
+            abilities: details.abilities,
+            stats: details.stats,
+            height: details.height,
+            weight: details.weight,
+          };
+        } catch (error) {
+          console.error(`Error fetching details for Pokemon ${index + 1}:`, error);
+          return {
+            id: index + 1,
+            name: pokemon.name,
+            url: pokemon.url,
+          };
+        }
+      })
+    );
+
+    return pokemonDetails;
   } catch (error) {
     console.error('Error fetching Pokemon list:', error);
     throw error;
