@@ -17,7 +17,6 @@ export default function Home() {
 
   const { pokemon: allPokemon, isLoading, error } = usePokemonList();
 
-  // Filter Pokemon based on search query
   const filteredPokemon = useMemo(() => {
     if (!allPokemon || !searchQuery.trim()) {
       return allPokemon;
@@ -25,12 +24,10 @@ export default function Home() {
 
     const query = searchQuery.toLowerCase();
     return allPokemon.filter((pokemon) => {
-      // Search by name
       if (pokemon.name.toLowerCase().includes(query)) {
         return true;
       }
 
-      // Search by abilities (if loaded)
       if (pokemon.abilities) {
         return pokemon.abilities.some((ability) =>
           ability.ability.name.toLowerCase().includes(query)
@@ -127,7 +124,7 @@ export default function Home() {
             {filteredPokemon && filteredPokemon.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                 {filteredPokemon.map((pokemon) => (
-                  <PokemonCard key={pokemon.id} pokemon={pokemon} />
+                  <PokemonCard key={pokemon.id} pokemon={pokemon} onClick={handlePokemonClick} />
                 ))}
               </div>
             ) : (

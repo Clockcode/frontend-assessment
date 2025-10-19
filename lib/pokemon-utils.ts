@@ -33,3 +33,13 @@ export function getTypeColor(type: string): string {
   };
   return typeColors[type] || '#68A090';
 }
+
+export function formatPokemonHeight(height: number | undefined): string {
+  const value = height ? (height / 10).toFixed(1) : '0.0';
+  return `${value} m`;
+}
+
+export function formatPokemonWeight(weight: number | undefined): string {
+  const value = weight ? (weight / 10).toFixed(1) : '0.0';
+  return `${value} kg`;
+}
