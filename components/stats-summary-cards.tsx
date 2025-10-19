@@ -17,7 +17,7 @@ export function StatsSummaryCards({
 }: StatsSummaryCardsProps) {
   if (isLoading) {
     return (
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
         <div className="bg-blue-50 rounded-lg p-4">
           <Skeleton className="h-4 w-16 mb-1" />
           <Skeleton className="h-8 w-12" />
@@ -37,7 +37,7 @@ export function StatsSummaryCards({
   const calculatedNetChange = netChange ?? ((modifiedTotal || 0) - (baseTotal || 0));
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
       <div className="bg-blue-50 rounded-lg p-4 text-center">
         <div className="text-sm font-medium text-blue-700 mb-1">Base Total</div>
         <div className="text-2xl font-bold text-blue-800">{baseTotal || 0}</div>

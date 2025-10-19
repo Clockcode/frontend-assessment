@@ -34,15 +34,40 @@ export function StatsChart({
   if (isLoading) {
     return (
       <div className="h-80 w-full">
-        <Skeleton className="h-full w-full rounded-lg" />
-      </div>
-    );
-  }
+        <div className="h-full w-full bg-white relative p-5">
 
-  if (!data || data.length === 0) {
-    return (
-      <div className="h-80 w-full flex items-center justify-center text-gray-500">
-        No chart data available
+          {/* Chart area with exact margins matching BarChart */}
+          <div
+            className="absolute bg-white"
+            style={{
+              top: '20px',
+              right: '80px',
+              left: '80px',
+              bottom: '60px'
+            }}
+          >
+            {/* Grid lines - thinner with proper margins */}
+            <div
+              className="h-4/6 flex flex-col justify-between"
+            >
+              {[0, 1, 2, 3, 4].map((i) => (
+                <div key={i} className="border-t border-gray-200" style={{ height: '0.5px' }} />
+              ))}
+            </div>
+          </div>
+
+          {/* Legend skeleton - positioned below the chart area, smaller elements */}
+          <div className="absolute bottom-24 left-1/2 transform -translate-x-1/2 flex gap-6">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-blue-400"></div>
+              <Skeleton className="h-2 w-12" />
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-purple-400"></div>
+              <Skeleton className="h-2 w-16" />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
