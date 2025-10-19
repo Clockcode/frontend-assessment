@@ -8,9 +8,12 @@ import {
   CartesianGrid,
   Legend,
   ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis
 } from 'recharts';
+import { CustomLegend } from './custom-legend';
+import { CustomTooltip } from './custom-tooltip';
 
 interface ChartDataPoint {
   name: string;
@@ -23,23 +26,6 @@ interface StatsChartProps {
   isLoading?: boolean;
   data?: ChartDataPoint[];
 }
-
-
-// Custom legend component
-const CustomLegend = () => {
-  return (
-    <div className="flex justify-center gap-6 mt-8">
-      <div className="flex items-center gap-2">
-        <div className="w-3 h-3 bg-blue-500"></div>
-        <span className="text-sm font-medium text-blue-500">Base Stat</span>
-      </div>
-      <div className="flex items-center gap-2">
-        <div className="w-3 h-3 bg-purple-500"></div>
-        <span className="text-sm font-medium text-purple-500">Ability Modified</span>
-      </div>
-    </div>
-  );
-};
 
 export function StatsChart({
   isLoading,
@@ -94,6 +80,7 @@ export function StatsChart({
             tickFormatter={(value) => value.toString()}
             label={{ value: 'Stat Value', angle: -90, position: 'insideLeft', offset: -5, style: { textAnchor: 'middle', fill: '#374151', fontSize: 14 } }}
           />
+          <Tooltip content={<CustomTooltip />} />
           <Legend content={<CustomLegend />} />
           <Bar
             dataKey="base"

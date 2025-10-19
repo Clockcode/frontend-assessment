@@ -1,7 +1,7 @@
 'use client';
 
 import { AbilitySelector } from '@/components/ability-selector';
-import { StatsChart } from '@/components/stats-chart';
+import { StatsChart } from '@/components/charts';
 import { StatsSummaryCards } from '@/components/stats-summary-cards';
 import { useAbilityStats } from '@/hooks/use-ability-stats';
 import { useChartData } from '@/hooks/use-chart-data';
