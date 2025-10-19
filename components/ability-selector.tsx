@@ -54,7 +54,7 @@ export function AbilitySelector({
           <Skeleton className="h-8 w-24 rounded-md" />
           <Skeleton className="h-8 w-16 rounded-md" />
         </div>
-        <div className="p-3 bg-gray-50 rounded-lg border border-gray-200">
+        <div className="p-3 bg-gray-50 rounded-lg">
           <Skeleton className="h-5 w-24 mb-2" />
           <Skeleton className="h-4 w-full mb-1" />
           <Skeleton className="h-4 w-3/4" />
@@ -113,7 +113,7 @@ export function AbilitySelector({
 
       {/* Selected Ability Description */}
       {selectedAbility && (
-        <div className="mt-4 p-3 bg-gray-50 rounded-lg border border-gray-200">
+        <div className="mt-4 p-3 bg-gray-50 rounded-lg">
           <h4 className="font-semibold text-gray-800 mb-2">
             {formatPokemonName(selectedAbility)}
           </h4>
