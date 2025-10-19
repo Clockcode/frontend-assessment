@@ -1,10 +1,9 @@
 'use client';
 
-import { PokemonAbilities } from '@/components/pokemon-abilities';
 import { PokemonDetailHeader } from '@/components/pokemon-detail-header';
+import { PokemonDetailTabs } from '@/components/pokemon-detail-tabs';
 import { PokemonImage } from '@/components/pokemon-image';
 import { PokemonPhysicalStats } from '@/components/pokemon-physical-stats';
-import { PokemonStats } from '@/components/pokemon-stats';
 import { PokemonTypes } from '@/components/pokemon-types';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
@@ -102,13 +101,9 @@ export default function PokemonDetailPage({ params }: PokemonDetailPageProps) {
             types={pokemon?.types}
           />
 
-          <PokemonAbilities
+          <PokemonDetailTabs
             isLoading={isLoading}
             abilities={pokemon?.abilities}
-          />
-
-          <PokemonStats
-            isLoading={isLoading}
             stats={pokemon?.stats}
           />
         </div>
